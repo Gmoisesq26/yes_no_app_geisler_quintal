@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yes_no_app_geisler_quintal/config/theme/app_theme.dart';
+import 'package:yes_no_app_geisler_quintal/presentation/screens/chat/chat_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,15 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Yes_No_App',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme().theme(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material_App_Bar'),
-        ),
-        body: const Center(
-          child: Text('Helo world'),
-        ),
-      ),
+      theme: AppTheme(selectedColor: 0).theme(),
+      home: const ChatScreen(),
     );
   }
 }
