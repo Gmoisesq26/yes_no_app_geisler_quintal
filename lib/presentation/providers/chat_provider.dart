@@ -11,6 +11,7 @@ class ChatProvider extends ChangeNotifier {
 
   //Enviar un mesage
   Future<void> sendMessage(String text) async {
+    if (text.isEmpty) return;
     //El mensage siempre va a ser me porque yo lo envio
     final newMessage = Message(text: text, formWho: FromWho.me);
     //Agrega un elemento nuevo a la lista "messageList"
