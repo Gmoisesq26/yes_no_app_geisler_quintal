@@ -12,7 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => ChatProvider())],
+      providers: [
+        //es un build context y lo que hace es los cambios en el Chat provider
+        ChangeNotifierProvider(create: (_) => ChatProvider())
+      ],
       child: MaterialApp(
         title: 'Yes_No_App',
         debugShowCheckedModeBanner: false,

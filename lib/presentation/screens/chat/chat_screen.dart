@@ -36,6 +36,7 @@ class _ChatView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Pedir al widget que este pendiente de todos los cambios
     final chatProvider = context.watch<ChatProvider>();
 
     return SafeArea(

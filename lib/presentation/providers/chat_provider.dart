@@ -13,7 +13,7 @@ class ChatProvider extends ChangeNotifier {
 
   //Enviar un mesage
   Future<void> sendMessage(String text) async {
-    if (text.isEmpty) return;
+    if (text.trim().isEmpty) return;
     //El mensage siempre va a ser me porque yo lo envio
     final newMessage = Message(text: text, formWho: FromWho.me);
     //Agrega un elemento nuevo a la lista "messageList"
@@ -21,6 +21,7 @@ class ChatProvider extends ChangeNotifier {
     if (text.endsWith('?')) {
       herReply();
     }
+    print('Número de mensajes en la lista: ${messageList.length}');
     //Notifica si algo de provider cambio para que se guarde en el estado
     notifyListeners();
     //Mueve el scroll
@@ -30,6 +31,7 @@ class ChatProvider extends ChangeNotifier {
   Future<void> herReply() async {
     final herMessage = await getYesNoAnswer.getAnswer();
     messageList.add(herMessage);
+    print('Número de mensajes en la lista: ${messageList.length}');
     notifyListeners();
     moveScrollToBottom();
   }
