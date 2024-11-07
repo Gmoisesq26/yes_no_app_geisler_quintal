@@ -9,6 +9,7 @@ class ChatProvider extends ChangeNotifier {
   ];
   //conrolador para manejar la posicion del scrool
   final ScrollController chatScrollController = ScrollController();
+  //Instancia de clase GetYesNoAnswer
   final getYesNoAnswer = GetYesNoAnswer();
 
   //Enviar un mesage

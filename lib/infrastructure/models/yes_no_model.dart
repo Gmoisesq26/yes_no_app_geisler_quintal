@@ -1,3 +1,4 @@
+//El modelo define que datos debe tener la aplicación.
 import 'package:yes_no_app_geisler_quintal/domain/entities/message.dart';
 
 class YesNoModel {
