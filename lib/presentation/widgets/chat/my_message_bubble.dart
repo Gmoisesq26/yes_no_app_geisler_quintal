@@ -23,9 +23,23 @@ class MyMessageBubble extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          height: 10,
-        )
+        const SizedBox(height: 5),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              message.time, // Mostrar la hora del mensaje
+              style: const TextStyle(color: Colors.grey, fontSize: 10),
+            ),
+            const SizedBox(width: 5),
+            const Icon(
+              Icons.done_all, // Ícono de doble palomita
+              color: Colors.blue, // Cambia el color a azul
+              size: 14,
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
       ],
     );
   }

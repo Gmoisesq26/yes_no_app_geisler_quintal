@@ -25,11 +25,13 @@ class HerMessageBubble extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        _ImageBubble(message.imageUrl!),
-        const SizedBox(
-          height: 10,
-        )
-        // Todo: imagen
+        if (message.imageUrl != null) _ImageBubble(imageUrl: message.imageUrl!),
+        const SizedBox(height: 5),
+        Text(
+          message.time, // Mostrar la hora del mensaje
+          style: const TextStyle(color: Colors.grey, fontSize: 10),
+        ),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -38,29 +40,44 @@ class HerMessageBubble extends StatelessWidget {
 class _ImageBubble extends StatelessWidget {
   final String imageUrl;
 
-  const _ImageBubble(this.imageUrl);
+  const _ImageBubble({required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print(size);
 
     return ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.network(
-          imageUrl,
-          width: size.width * 0.7,
-          height: 150,
-          fit: BoxFit.cover,
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
+      borderRadius: BorderRadius.circular(20),
+      child: Image.network(
+        imageUrl,
+        width: size.width * 0.7,
+        height: 150,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          if (loadingProgress.cumulativeBytesLoaded ==
+              loadingProgress.expectedTotalBytes) {
+            return child;
+          } else {
             return Container(
               width: size.width * 0.7,
               height: 150,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: const Text('Mi amor está enviando una imagen'),
+              child: const Center(
+                  child: CircularProgressIndicator()), // Indicador de carga
             );
-          },
-        ));
+          }
+        },
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading image: $error');
+          return Container(
+            width: size.width * 0.7,
+            height: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: const Center(child: Icon(Icons.error, color: Colors.red)),
+          );
+        },
+      ),
+    );
   }
 }

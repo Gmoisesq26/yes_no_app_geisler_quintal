@@ -21,10 +21,42 @@ class ChatScreen extends StatelessWidget {
                 'https://i.pinimg.com/originals/43/c2/34/43c234a9c68a9175887621cb682428d1.png'),
           ),
         ),
-        title: const Text('Mi amor ❤️'),
-        centerTitle: true,
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Mi amor ❤️'),
+            SizedBox(height: 4),
+            Text(
+              'En línea',
+              style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 12), // Estilo para indicar que está en línea
+            ),
+          ],
+        ),
+        centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.videocam),
+            onPressed: () {
+              // Acción para la cámara de video
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.call),
+            onPressed: () {
+              // Acción para el teléfono
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed: () {
+              // Acción para los tres puntos
+            },
+          ),
+        ],
       ),
-      body: _ChatView(),
+      body: const _ChatView(),
     );
   }
 }

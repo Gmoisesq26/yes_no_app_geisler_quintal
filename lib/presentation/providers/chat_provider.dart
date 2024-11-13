@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:yes_no_app_geisler_quintal/config/helpers/get_yes_no_answer.dart';
 import 'package:yes_no_app_geisler_quintal/domain/entities/message.dart';
 
 class ChatProvider extends ChangeNotifier {
   List<Message> messageList = [
-    Message(text: 'Hola linda', formWho: FromWho.me),
-    Message(text: 'Te tengo que preguntar', formWho: FromWho.me)
+    Message(
+        text: 'Hola linda',
+        formWho: FromWho.me,
+        time: DateFormat('hh:mm a').format(DateTime.now())),
+    Message(
+        text: 'Te tengo que preguntar',
+        formWho: FromWho.me,
+        time: DateFormat('hh:mm a').format(DateTime.now()))
   ];
   //conrolador para manejar la posicion del scrool
   final ScrollController chatScrollController = ScrollController();
@@ -16,7 +23,10 @@ class ChatProvider extends ChangeNotifier {
   Future<void> sendMessage(String text) async {
     if (text.trim().isEmpty) return;
     //El mensage siempre va a ser me porque yo lo envio
-    final newMessage = Message(text: text, formWho: FromWho.me);
+    final newMessage = Message(
+        text: text,
+        formWho: FromWho.me,
+        time: DateFormat('hh:mm a').format(DateTime.now()));
     //Agrega un elemento nuevo a la lista "messageList"
     messageList.add(newMessage);
     if (text.endsWith('?')) {
